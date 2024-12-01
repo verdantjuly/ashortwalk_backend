@@ -91,8 +91,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const sendRoom = this.rooms[room];
     console.log(this.rooms);
     // 방에 메시지 전송
-    sendRoom?.forEach(nickname => {
-      const userSocketId = this.users[nickname];
+    sendRoom?.forEach(user => {
+      const userSocketId = this.users[user];
       if (userSocketId) {
         this.server
           .to(userSocketId)
