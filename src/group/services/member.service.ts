@@ -20,6 +20,7 @@ export class MemberService {
   }
   async findMember(groupId: string, userId: string): Promise<MemberEntity> {
     const result = await this.memberRepository.findMember(groupId, userId);
+    console.log(result);
     return result;
   }
 

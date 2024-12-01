@@ -5,6 +5,7 @@ import {
   OnGatewayDisconnect,
   SubscribeMessage,
   MessageBody,
+  ConnectedSocket,
 } from '@nestjs/websockets';
 
 import { Server, Socket } from 'socket.io';
@@ -103,12 +104,12 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('get:prev')
   async handleGetMessage(
-    @MessageBody() { room, nickname }: { room: string; nickname: string },
+    @MessageBody() { room }: { room: string },
+    @ConnectedSocket() client: Socket,
   ) {
     const messages = await this.messageService.getMessagesByRoom(room);
     messages.map(msg => {
-      const sendUser = this.users[nickname];
-      this.server.to(sendUser).emit('chat:message', msg);
+      client.emit('chat:message', msg);
     });
   }
 
