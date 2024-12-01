@@ -5,10 +5,16 @@ import { FeedRepository } from '../repositories/feed.repositories';
 export class FeedService {
   constructor(private readonly feedRepository: FeedRepository) {}
 
-  async createFeed(content: string, userId: string, groupId: string) {
+  async createFeed(
+    content: string,
+    userId: string,
+    nickname: string,
+    groupId: string,
+  ) {
     const result = await this.feedRepository.createFeed(
       content,
       userId,
+      nickname,
       groupId,
     );
     return result;

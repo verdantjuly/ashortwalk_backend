@@ -28,9 +28,15 @@ export class FeedController {
   ) {
     const content = body.content;
     const userId = req.user.id;
+    const nickname = req.user.nickname;
     const { groupId } = param;
 
-    return await this.feedService.createFeed(content, userId, groupId);
+    return await this.feedService.createFeed(
+      content,
+      userId,
+      nickname,
+      groupId,
+    );
   }
 
   @Patch(':feedId')

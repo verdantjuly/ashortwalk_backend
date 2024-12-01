@@ -16,11 +16,17 @@ export class FeedRepository extends Repository<FeedEntity> {
     super(repo.target, repo.manager, repo.queryRunner);
   }
 
-  async createFeed(content: string, userId: string, groupId: string) {
+  async createFeed(
+    content: string,
+    userId: string,
+    nickname: string,
+    groupId: string,
+  ) {
     const Feed = new FeedEntity();
     Feed.content = content;
     Feed.userId = userId;
     Feed.groupId = groupId;
+    Feed.nickname = nickname;
     const group = await this.groupRepository.findGroupById(groupId);
     Feed.group = group;
     return await this.save(Feed);

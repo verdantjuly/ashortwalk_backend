@@ -1,8 +1,6 @@
-import { CommentEntity } from 'src/comments/entities';
 import { BaseEntity } from 'src/common/entity';
 import { GroupEntity } from 'src/group/entities';
-import { UserEntity } from 'src/user/entities';
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity('Feeds')
 export class FeedEntity extends BaseEntity {
@@ -11,6 +9,9 @@ export class FeedEntity extends BaseEntity {
 
   @Column({ type: 'varchar' })
   userId: string;
+
+  @Column({ type: 'varchar' })
+  nickname: string;
 
   @Column({ type: 'varchar' })
   groupId: string;
