@@ -108,6 +108,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
   ) {
     const messages = await this.messageService.getMessagesByRoom(room);
+    messages.reverse();
     messages.map(msg => {
       client.emit('chat:message', msg);
     });
