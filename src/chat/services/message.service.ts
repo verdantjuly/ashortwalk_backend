@@ -30,7 +30,7 @@ export class MessageService {
   async getMessagesByRoom(room: string): Promise<Message[]> {
     return this.messageModel
       .find({ room })
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: 1 })
       .limit(10) // 최근 10개만 가져오기
       .exec();
   }
