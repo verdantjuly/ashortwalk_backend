@@ -40,8 +40,8 @@ export class FeedService {
     return await this.feedRepository.deleteFeed(feedId);
   }
 
-  async findFeeds(page: number) {
-    const Feeds = await this.feedRepository.findFeeds(page);
+  async findFeeds(page: number, groupId: string) {
+    const Feeds = await this.feedRepository.findFeeds(page, groupId);
     return Feeds;
   }
 

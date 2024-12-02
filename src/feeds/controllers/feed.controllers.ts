@@ -64,12 +64,16 @@ export class FeedController {
   }
 
   @Get()
-  getFeeds(@Query() query: { page: number }) {
+  getFeeds(
+    @Query() query: { page: number },
+    @Param() param: { groupId: string },
+  ) {
     let { page } = query;
+    const { groupId } = param;
     if (!page) {
       page = 1;
     }
-    return this.feedService.findFeeds(page);
+    return this.feedService.findFeeds(page, groupId);
   }
 
   @Get('/count')

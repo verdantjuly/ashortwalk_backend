@@ -61,7 +61,7 @@ export class FeedRepository extends Repository<FeedEntity> {
     return true;
   }
 
-  async findFeeds(page: number) {
+  async findFeeds(page: number, groupId: string) {
     const limit = 3;
     const Feeds = await this.find({
       skip: (page - 1) * limit,
@@ -69,6 +69,7 @@ export class FeedRepository extends Repository<FeedEntity> {
       order: {
         createdAt: 'DESC',
       },
+      where: { groupId },
     });
     return Feeds;
   }
