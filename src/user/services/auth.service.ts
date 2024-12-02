@@ -20,11 +20,21 @@ export class AuthService {
     private readonly userRepository: UserRepository,
   ) {}
 
+  randomNickname() {
+    return (
+      '산책인#' +
+      Math.floor(Math.random() * (99999999999 - 11111111111 + 1)) +
+      11111111111
+    );
+  }
+
   async kakaoLogin(@Req() req) {
     const password = req.user.password;
     const existingUser = await this.userService.findByKakaoPassword(password);
     const role = req.user.role;
-    const nickname = req.user.nickname;
+    let nickname = this.randomNickname();
+    const isNickname = await this.userRepository.findUserByNickname(nickname);
+    while (isNickname) nickname = this.randomNickname();
     if (existingUser) {
       const accessToken = await this.createAccessToken({
         id: existingUser.id,
