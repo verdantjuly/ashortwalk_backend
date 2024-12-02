@@ -118,7 +118,7 @@ export class AuthService {
       googleRedirectURI: process.env.GOOGLE_CALLBACK_URL,
     };
   }
-  refresh(refreshToken: string) {
+  async refresh(refreshToken: string) {
     const user = this.jwtService.verify(refreshToken, {
       secret: process.env.REFRESH_JWT_SECRET,
     });
@@ -132,6 +132,6 @@ export class AuthService {
       nickname: user.nickname,
     });
 
-    return { accessToken };
+    return accessToken;
   }
 }
