@@ -23,8 +23,8 @@ export class AuthService {
   randomNickname() {
     return (
       '산책인#' +
-      Math.floor(Math.random() * (99999999999 - 11111111111 + 1)) +
-      11111111111
+      (Math.floor(Math.random() * (99999999999 - 11111111111 + 1)) +
+        11111111111)
     );
   }
 
