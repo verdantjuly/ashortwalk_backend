@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
 import { MissionEntity } from '../entities/mission.entity';
@@ -27,4 +27,16 @@ export class MissionRepository extends Repository<MissionEntity> {
     Mission.title = title;
     return await this.save(Mission);
   }
+  async findMissionById(missionId: string) {
+    const Mission = await this.findOneBy({ id: missionId });
+    if (!Mission) {
+      throw new BadRequestException();
+    }
+    return Mission;
+  }
+
+
+
 }
+
+

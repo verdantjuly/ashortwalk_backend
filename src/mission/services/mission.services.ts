@@ -7,7 +7,7 @@ export class MissionService {
   constructor(
     private readonly missionRepository: MissionRepository,
     private readonly groupRepository: GroupRepository,
-  ) {}
+  ) { }
 
   async createMission(
     title: string,
@@ -27,4 +27,11 @@ export class MissionService {
     );
     return result;
   }
+
+  async findMission(missionId: string) {
+    const Mission = await this.missionRepository.findMissionById(missionId);
+    return Mission;
+  }
+
+
 }

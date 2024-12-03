@@ -17,7 +17,7 @@ import { TokenPayload } from 'src/user/types/user.type';
 
 @Controller('api/groups/:groupId/feeds')
 export class FeedController {
-  constructor(private readonly feedService: FeedService) {}
+  constructor(private readonly feedService: FeedService) { }
 
   @Post()
   @UseGuards(AuthGuard())

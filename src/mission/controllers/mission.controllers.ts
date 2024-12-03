@@ -1,11 +1,11 @@
-import { Body, Controller, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Param, Post, Req, UseGuards, Get } from '@nestjs/common';
 import { MissionService } from '../services/mission.services';
 import { AuthGuard } from '@nestjs/passport';
 import { TokenPayload } from 'src/user/types/user.type';
 
 @Controller('api/groups/:groupId/missions')
 export class MissionController {
-  constructor(private readonly missionService: MissionService) {}
+  constructor(private readonly missionService: MissionService) { }
 
   @Post()
   @UseGuards(AuthGuard())
@@ -25,4 +25,17 @@ export class MissionController {
       groupId,
     );
   }
+
+
+  @Get(":missionId")
+  getMission(
+    @Param() param: { missionId: string },
+  ) {
+    const { missionId } = param;
+    return this.missionService.findMission(missionId);
+  }
+
+
+
+
 }
