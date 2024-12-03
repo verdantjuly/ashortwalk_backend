@@ -19,4 +19,12 @@ export class CompleteService {
     }
     return await this.compeleteReopsitory.createComplete(userId, groupId);
   }
+
+  async countCompletes(missionId: string) {
+    return await this.compeleteReopsitory.countCompletes(missionId);
+  }
+
+  async isComplete(userId: string, groupId: string) {
+    return await this.compeleteReopsitory.findComplete(userId, groupId);
+  }
 }
