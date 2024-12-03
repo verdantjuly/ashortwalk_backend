@@ -24,7 +24,7 @@ export class CompleteController {
     return await this.compeleteService.countCompletes(missionId);
   }
 
-  @Get()
+  @Get('/check')
   @UseGuards(AuthGuard())
   async isComplete(@Param() param: { groupId: string }, @Req() req) {
     const { groupId } = param;
