@@ -16,7 +16,7 @@ export class CompleteRepository extends Repository<CompleteEntity> {
     super(repo.target, repo.manager, repo.queryRunner);
   }
   async findComplete(userId: string, groupId: string) {
-    return await this.find({ where: { userId, groupId } });
+    return await this.findOne({ where: { userId, groupId } });
   }
   async createComplete(userId: string, groupId: string) {
     const mission = await this.missionRepository.findMissionById(groupId);
