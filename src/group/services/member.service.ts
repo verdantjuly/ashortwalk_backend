@@ -4,7 +4,7 @@ import { MemberEntity } from '../entities';
 
 @Injectable()
 export class MemberService {
-  constructor(private readonly memberRepository: MemberRepository) {}
+  constructor(private readonly memberRepository: MemberRepository) { }
 
   createMember(
     groupId: string,
@@ -20,7 +20,13 @@ export class MemberService {
   }
   async findMember(groupId: string, userId: string): Promise<MemberEntity> {
     const result = await this.memberRepository.findMember(groupId, userId);
-    console.log(result);
+
+    return result;
+  }
+
+  async findMembersCount(groupId: string): Promise<number> {
+    const result = await this.memberRepository.countMembers(groupId);
+
     return result;
   }
 

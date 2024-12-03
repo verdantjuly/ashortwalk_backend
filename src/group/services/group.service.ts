@@ -7,7 +7,7 @@ export class GroupService {
   constructor(
     private readonly groupRepository: GroupRepository,
     private readonly memberRepository: MemberRepository,
-  ) {}
+  ) { }
 
   async createGroup(
     groupName: string,
@@ -79,4 +79,6 @@ export class GroupService {
   async deleteGroupByName(groupName: string) {
     return await this.groupRepository.deleteGroupByName(groupName);
   }
+
+
 }

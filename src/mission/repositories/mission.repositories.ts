@@ -20,23 +20,35 @@ export class MissionRepository extends Repository<MissionEntity> {
     userId: string,
     groupId: string,
   ) {
-    const Mission = new MissionEntity();
-    Mission.content = content;
-    Mission.leaderId = userId;
-    Mission.groupId = groupId;
-    Mission.title = title;
-    return await this.save(Mission);
+    const mission = new MissionEntity();
+    mission.content = content;
+    mission.leaderId = userId;
+    mission.groupId = groupId;
+    mission.title = title;
+    return await this.save(mission);
   }
-  async findMissionById(missionId: string) {
-    const Mission = await this.findOneBy({ id: missionId });
-    if (!Mission) {
+
+  async findMissionById(groupId: string) {
+    const mission = await this.findOne({ where: { groupId } });
+
+    return mission;
+  }
+
+  async updateMission(title: string, content: string, missionId: string) {
+    const mission = await this.findOneBy({ id: missionId });
+    if (!mission) {
       throw new BadRequestException();
     }
-    return Mission;
+
+    mission.content = content;
+    mission.title = title;
+    const updateMission = await this.save(mission);
+    return updateMission;
   }
 
+  async deleteMission(missionId: string) {
+    await this.softRemove({ id: missionId });
 
-
+    return true;
+  }
 }
-
-

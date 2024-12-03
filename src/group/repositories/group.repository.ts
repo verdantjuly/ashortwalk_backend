@@ -107,4 +107,11 @@ export class GroupRepository extends Repository<GroupEntity> {
     }
     return true;
   }
+
+  async updatePoint(groupId: string, count: number) {
+    const group = await this.findOneBy({ id: groupId })
+
+    group.point = group.point + count
+    return await this.save(group)
+  }
 }

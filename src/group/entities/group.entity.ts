@@ -5,6 +5,9 @@ import { FeedEntity } from 'src/feeds/entities/feed.entity';
 
 @Entity('Groups')
 export class GroupEntity extends BaseEntity {
+  @Column({ type: 'integer', default: 0 })
+  point: number;
+
   @Column({ type: 'varchar' })
   leaderUserId: string;
 
@@ -25,4 +28,6 @@ export class GroupEntity extends BaseEntity {
 
   @OneToMany(() => FeedEntity, feed => feed.group, { cascade: true })
   feed: FeedEntity[];
+
+
 }

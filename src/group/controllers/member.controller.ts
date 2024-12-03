@@ -16,7 +16,7 @@ import { MemberService } from '../services/member.service';
 
 @Controller('api/groups/:groupId/members')
 export class MemberController {
-  constructor(private readonly memberService: MemberService) {}
+  constructor(private readonly memberService: MemberService) { }
 
   @Post()
   @UseGuards(AuthGuard())
@@ -48,6 +48,16 @@ export class MemberController {
       throw new BadRequestException();
     }
     return this.memberService.findMembers(groupId);
+  }
+
+  @Get("/count")
+  @UseGuards(AuthGuard())
+  getMembersCount(@Param() param: { groupId: string }): Promise<number> {
+    const { groupId } = param;
+    if (!groupId) {
+      throw new BadRequestException();
+    }
+    return this.memberService.findMembersCount(groupId);
   }
 
   @Delete()

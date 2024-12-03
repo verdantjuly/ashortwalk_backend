@@ -21,7 +21,7 @@ export class FeedController {
 
   @Post()
   @UseGuards(AuthGuard())
-  async feedGroup(
+  async createGroup(
     @Param() param,
     @Body() body: { content: string },
     @Req() req: { user: TokenPayload },

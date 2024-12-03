@@ -10,6 +10,9 @@ export class CompleteEntity extends BaseEntity {
   @Column({ type: 'varchar' })
   groupId: string;
 
+  @Column({ type: 'varchar' })
+  missionId: string;
+
   @ManyToOne(() => MissionEntity, mission => mission.complete, {
     nullable: false,
     onDelete: 'CASCADE',
