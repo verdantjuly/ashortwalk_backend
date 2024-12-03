@@ -28,7 +28,8 @@ export class CompleteRepository extends Repository<CompleteEntity> {
     return await this.save(complete);
   }
 
-  async countCompletes(missionId: string) {
-    return await this.count({ where: { missionId } });
+  async countCompletes(groupId: string) {
+    const mission = await this.missionRepository.findMissionById(groupId);
+    return await this.count({ where: { missionId: mission.id } });
   }
 }
