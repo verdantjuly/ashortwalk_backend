@@ -24,6 +24,7 @@ export class CompleteRepository extends Repository<CompleteEntity> {
     complete.userId = userId;
     complete.groupId = groupId;
     complete.missionId = mission.id;
+    complete.mission = mission;
     return await this.save(complete);
   }
 
