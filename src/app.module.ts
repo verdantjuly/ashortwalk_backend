@@ -16,6 +16,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MessageModel, MessageSchema } from './chat/schemas/message.schema';
 import { ChatModule } from './chat/chat.module';
 import { ModuleRef } from '@nestjs/core';
+import { MissionModule } from './mission/mission.module';
 
 dotenv.config();
 
@@ -52,6 +53,7 @@ dotenv.config();
     GroupModule,
     FeedModule,
     ChatModule,
+    MissionModule,
   ],
   controllers: [KeyController, HealthController],
   providers: [JwtStrategy, RedisModule],
@@ -59,4 +61,3 @@ dotenv.config();
 export class AppModule {
   constructor(private readonly moduleRef: ModuleRef) {}
 }
-//
